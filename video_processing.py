@@ -7,17 +7,15 @@ def video_process():
     count = 0
     video_file = "Before Sunrise Trailer.mp4"
     capture = cv2.VideoCapture(video_file)
-    frameRate = capture.get(5)
-    x=1
+    frame_rate = capture.get(7)
+
     while(capture.isOpened()):
         frame_id = capture.get(1)
-        ret, frame = capture.read()
-        if (ret != True):
+        ret_val, frame = capture.read()
+        if (ret_val != True):
             break
-        if (frame_id % math.floor(frameRate) == 0):
+        if (frame_id % math.floor(frame_rate) == 0):
             filename ="frame%d.jpg" % count;count+=1
             cv2.imwrite('images/' + filename, frame)
 
     capture.release()
-
-video_process()
